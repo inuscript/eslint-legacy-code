@@ -23,7 +23,9 @@ var ruleTester = new RuleTester();
 ruleTester.run("no-jquery-extend", rule, {
 
     valid: [
-
+        {
+            code: "Object.assign(objA, objB)",
+        }
         // give me some code that won't trigger a warning
     ],
 
@@ -31,8 +33,8 @@ ruleTester.run("no-jquery-extend", rule, {
         {
             code: "$.extend(objA, objB)",
             errors: [{
-                message: "Fill me in.",
-                type: "Me too"
+                message: "Use Object.assign instead of jQuery.extend",
+                type: "CallExpression"
             }]
         }
     ]

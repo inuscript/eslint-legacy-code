@@ -10,13 +10,14 @@
   "author": "inuscript",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --recursive tests"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
   },
   "devDependencies": {
-    "eslint": "~1.2.0"
+    "eslint": "^1.2.1",
+    "mocha": "^2.4.5"
   },
   "engines": {
     "node": ">=0.10.0"
