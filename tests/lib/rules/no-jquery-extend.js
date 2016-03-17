@@ -10,10 +10,8 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-var rule = require('../../../lib/rules/no-jquery-extend'),
-
-  RuleTester = require('eslint').RuleTester
-
+let rule = require('../../../lib/rules/no-jquery-extend')
+let RuleTester = require('eslint').RuleTester
 
 // ------------------------------------------------------------------------------
 // Tests
@@ -23,15 +21,20 @@ var ruleTester = new RuleTester()
 ruleTester.run('no-jquery-extend', rule, {
 
   valid: [
-    {
-      code: 'Object.assign(objA, objB)',
-    }
-        // give me some code that won't trigger a warning
+    { code: 'Object.assign(objA, objB)' },
+    { code: '_.extend(objA, objB)' }
   ],
 
   invalid: [
     {
       code: '$.extend(objA, objB)',
+      errors: [{
+        message: 'Use Object.assign instead of jQuery.extend',
+        type: 'CallExpression'
+      }]
+    },
+    {
+      code: 'jQuery.extend(objA, objB)',
       errors: [{
         message: 'Use Object.assign instead of jQuery.extend',
         type: 'CallExpression'
